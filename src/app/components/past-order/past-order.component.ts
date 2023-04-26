@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-past-order',
@@ -7,8 +8,24 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PastOrderComponent  implements OnInit {
   @Input() data!: any;
-  constructor() { }
+  isModalOpen: boolean = false;
+  constructor(private cartService: CartService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // localStorage.clear();
+  }
 
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+
+  reloadOrder() {
+    localStorage.removeItem('cart');
+    localStorage.removeItem('carts');
+    this.data.items.forEach((item: any) => {
+      this.cartService.addToCart(item);
+    });
+    this.cartService.setInstructions(this.data.instructions);
+    window.location.href = '/cart';
+  }
 }

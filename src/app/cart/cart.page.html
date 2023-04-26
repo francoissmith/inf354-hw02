@@ -7,7 +7,10 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Cart</ion-title>
+        <ion-title size="large">
+          <ion-icon size="large" name="cart-outline"></ion-icon>
+          Cart
+        </ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -61,7 +64,7 @@
   </ion-card>
 
   <div class="ion-padding">
-    <ion-textarea label="Special Instructions:" labelPlacement="floating" [autocapitalize]="true" [autoGrow]="true"
+    <ion-textarea label="Special Instructions:" labelPlacement="floating" [autocapitalize]="true" [autoGrow]="true" value="{{instructions}}"
       [counter]="true" maxlength="150"></ion-textarea>
   </div>
 
@@ -95,14 +98,13 @@
     <ng-template>
       <ion-header>
         <ion-toolbar>
-          <ion-title>Modal</ion-title>
+          <ion-title>Checkout</ion-title>
           <ion-buttons slot="end">
             <ion-button (click)="setOpen(false)">Close</ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
-        <h1>Checkout</h1>
         <div *ngFor="let item of data">
           <app-checkout [data]="item"></app-checkout>
         </div>

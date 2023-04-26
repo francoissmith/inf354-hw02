@@ -1,58 +1,78 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { PastOrder } from '../shared/PastOrder';
+import { User } from '../shared/User';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
   constructor() {
-    if (!localStorage.getItem('past')) {
-      let past = [{
-        id: 1,
-        name: 'Jofllof of Africa',
-        location: 'Lagos, Nigeria',
-        total: 300,
-        delivered: true,
-        date: 'March 12, 2021',
-        time: '10:00 AM',
-        amount: 2,
+    if (!localStorage.getItem('pastorder')) {
+      let pastorder = [{
+        id:0,
+        location: '',
+        total: 0,
+        delivered: false,
+        date: '',
+        time: '',
+        items: [{}]
       }];
-      localStorage.setItem('past', JSON.stringify(past));
+      localStorage.setItem('pastorder', JSON.stringify(pastorder));
     }
+    if(!localStorage.getItem('userDetails')) {
+      let userdetails = {
+        name: 'Francois Smith',
+        email: 'francois@smith.com',
+        phone: '012 345 1234',
+      }
+      localStorage.setItem('userDetails', JSON.stringify(userdetails));
+    }
+  }
+
+  getUserDetails(): Observable<User> {
+    let userdetails: User = {name: '', email: '', phone: ''};
+
+    if (localStorage.getItem('userDetails')) {
+      userdetails = JSON.parse(localStorage.getItem('userDetails')!);
+    }
+
+    return of(userdetails);
   }
 
   getPastOrders(): Observable<any[]> {
-    let pasts: any[] = [];
-    if (localStorage.getItem('past')) {
-      pasts = JSON.parse(localStorage.getItem('past')!);
+    let pastorders: PastOrder[] = [];
+
+    if (localStorage.getItem('pastorder')) {
+      pastorders = JSON.parse(localStorage.getItem('pastorder')!);
     }
-    return of(pasts);
+
+    return of(pastorders);
   }
 
   getPastOrder(id: number): Observable<any> {
-    let pasts: PastOrder[] = [];
+    let pastorders: PastOrder[] = [];
 
-    if (localStorage.getItem('pasts')) {
-      pasts = JSON.parse(localStorage.getItem('pasts')!);
+    if (localStorage.getItem('pastorders')) {
+      pastorders = JSON.parse(localStorage.getItem('pastorders')!);
     }
 
-    let past: any = pasts.find(
-      (past) => past.id === id
+    let pastorder: any = pastorders.find(
+      (pastorder) => pastorder.id === id
     );
 
-    return of(past);
+    return of(pastorder);
   }
 
-  addToPastOrders(past: any) {
-    let pasts: any[] = [];
-    if (localStorage.getItem('pasts')) {
-      pasts = JSON.parse(localStorage.getItem('pasts')!);
+  addToPastOrders(pastorder: any) {
+    let pastorders: any[] = [];
+    if (localStorage.getItem('pastorders')) {
+      pastorders = JSON.parse(localStorage.getItem('pastorders')!);
     }
 
-    pasts.push(past);
+    pastorders.push(pastorder);
 
-    localStorage.setItem('pasts', JSON.stringify(pasts));
+    localStorage.setItem('pastorders', JSON.stringify(pastorders));
   }
 
 }

@@ -7,6 +7,6 @@
 <ion-content [fullscreen]="true">
     <div *ngFor="let item of data">
       <app-info-card id="{{item.name}}" (click)="addToCart(item)" [data]="item"></app-info-card>
-      <ion-toast trigger="{{item.name}}" message="{{item.name}} added to the cart" [duration]="3000"></ion-toast>
+      <ion-toast position="top" color="primary" trigger="{{item.name}}" message="{{item.name}} added to the cart" [duration]="3000"></ion-toast>
     </div>
 </ion-content>

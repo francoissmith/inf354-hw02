@@ -1,25 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Cart } from '../shared/Cart';
+import { PastOrder } from '../shared/PastOrder';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  clearCart() {
-    throw new Error('Method not implemented.');
-  }
+  instructions: string = '';
   constructor() {
     if (!localStorage.getItem('cart')) {
-      let cart = [{
-        name: 'Jofllof of Africa',
-        typeof: 'African',
-        distance: '1.5km',
-        price: 150,
-        image: 'assets/2.jpeg',
-        quantiy: 1,
-      }];
+      let cart = [{}];
       localStorage.setItem('cart', JSON.stringify(cart));
+      let instructions = '';
+      localStorage.setItem('instructions', JSON.stringify(instructions));
     }
   }
 
@@ -29,6 +23,18 @@ export class CartService {
       carts = JSON.parse(localStorage.getItem('carts')!);
     }
     return of(carts);
+  }
+
+  getIstructions(): Observable<string> {
+    let instructions: string = '';
+    if (localStorage.getItem('instructions')) {
+      instructions = JSON.parse(localStorage.getItem('instructions')!);
+    }
+    return of(instructions);
+  }
+
+  setInstructions(instructions: string) {
+    localStorage.setItem('instructions', JSON.stringify(instructions));
   }
 
   getCart(id: number): Observable<Cart> {
@@ -100,17 +106,27 @@ export class CartService {
     }
   });
   localStorage.setItem('carts', JSON.stringify(items))
-  
-    // console.log(item);
-    // if (item) {
-    //   if(item.quantity > 1){
-    //     item.quantity--
-    //   } else { 
-    //     //   let index = items.indexOf(item)
-    //     //   items.splice(index, 1)
-    //     //   await localStorage.setItem('items', JSON.stringify(items))
-    //   }
-    // 
+  }
+
+  clearCart(instructions?: string) {
+    let pastOrders = JSON.parse(localStorage.getItem('pastorder')!);
+    let carts: Cart[] = [];
+    if (localStorage.getItem('carts')) {
+      carts = JSON.parse(localStorage.getItem('carts')!);
+    }
+    let pastorder: PastOrder = {
+      id: pastOrders.length + 1,
+      location: 'University of Pretoria, Informatorium',
+      total: this.getSubTotal(),
+      delivered: true,
+      date: new Date().toDateString(),
+      time: new Date().toLocaleTimeString(),
+      items: carts,
+      instructions: instructions
+    };
+    pastOrders.push(pastorder);
+    localStorage.setItem('pastorder', JSON.stringify(pastOrders));
+    localStorage.removeItem('carts');
   }
 
 }

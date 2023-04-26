@@ -15,12 +15,14 @@ export class CartPage implements OnInit {
   total: number = 0;
   subtotal: number = 0;
   delivery: number = 50;
+  instructions: string = '';
   constructor(private cartService: CartService, private actionSheetCtrl: ActionSheetController, private toastController: ToastController) {}
 
   ngOnInit() {
   this.cartService.getCarts().subscribe((cart:Cart[]) => { this.data = cart; console.log(this.data); });
   this.subtotal = this.cartService.getSubTotal();
   this.total = this.subtotal + this.delivery;
+  this.cartService.getIstructions().subscribe((instructions:string) => { this.instructions = instructions; console.log(this.instructions); });
   }
   ionViewWillEnter() {
     this.ngOnInit();
@@ -31,17 +33,27 @@ export class CartPage implements OnInit {
       if (confirmed) {
         this.showToast('Payment Successful', 'success', 'top');
         this.setOpen(false);
-        // this.cartService.clearCart();
-        // window.location.reload();
+        let instructions = document.querySelector('ion-textarea');
+        if (instructions == null) {
+          this.cartService.clearCart('');
+        }
+        else {
+          this.cartService.clearCart(instructions.value?instructions.value:'');
+        }
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       }
     });
   }
 
   setOpen(isOpen: boolean) {
-    this.isModalOpen = isOpen;
+    if(this.data.length == 0){
+      this.showToast('Cart is empty', 'danger', 'top');
+    } else {
+      this.isModalOpen = isOpen;
+    } 
   }
-
-  
 
   async showToast(msg: string, color: string, pos: 'top' | 'bottom' | 'middle') {
     const toast = await this.toastController.create({

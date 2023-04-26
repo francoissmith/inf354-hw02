@@ -7,7 +7,7 @@
 <ion-content fullscreen="true">
   <div class="profile-container">
     <img src="assets/user.svg">
-    <h2>John Doe</h2>
+    <h2>{{details.name}}</h2>
   </div>
   <ion-card>
     <ion-card-header>
@@ -17,29 +17,33 @@
 
       <ion-item lines="none">
         <ion-icon name="person" size="small" slot="start"></ion-icon>
-        <ion-input value="johndoe"></ion-input>
+        <ion-input name="name" value="{{details.name}}" disabled></ion-input>
       </ion-item>
 
       <ion-item lines="none">
         <ion-icon name="mail" size="small" slot="start"></ion-icon>
-        <ion-input value="john@doe.co.za"></ion-input>
+        <ion-input name="email" value="{{details.email}}" disabled></ion-input>
       </ion-item>
 
       <ion-item lines="none">
         <ion-icon name="call" size="small" slot="start"></ion-icon>
-        <ion-input value="071 234 5678"></ion-input>
+        <ion-input name="phone" value="{{details.phone}}" disabled></ion-input>
       </ion-item>
 
-      <ion-button expand="block" slot="end" color="primary">Edit</ion-button>
+      <ion-button (click)="toggleInputs($event)" expand="block" slot="end" color="primary">Edit</ion-button>
     </ion-card-content>
   </ion-card>
 
 
   <div class="ion-padding">
     <h1>Past Orders</h1>
-    <div *ngFor="let item of data">
-      <app-past-order [data]="item"></app-past-order>
-
+    <div *ngIf="data.length > 1">
+      <div *ngFor="let item of data">
+        <app-past-order *ngIf="item.id !==0" [data]="item"></app-past-order>
+      </div>
+    </div>
+    <div *ngIf="data.length <= 1">
+      <p>No past orders.</p>
     </div>
   </div>
 </ion-content>
