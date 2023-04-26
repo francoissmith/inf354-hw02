@@ -17,8 +17,8 @@ export class CartItemComponent  implements OnInit {
 
   deleteItem(event: any) {
     const item = (event.target as HTMLElement).parentElement;
-    console.log(item?.id);
-    this.cartService.deleteItem(item?.id);
+    this.cartService.deleteItem((Number)(item?.id));
+    window.location.reload();
   }
 
 }

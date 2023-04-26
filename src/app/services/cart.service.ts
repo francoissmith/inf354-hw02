@@ -6,6 +6,9 @@ import { Cart } from '../shared/Cart';
   providedIn: 'root',
 })
 export class CartService {
+  clearCart() {
+    throw new Error('Method not implemented.');
+  }
   constructor() {
     if (!localStorage.getItem('cart')) {
       let cart = [{
@@ -14,20 +17,21 @@ export class CartService {
         distance: '1.5km',
         price: 150,
         image: 'assets/2.jpeg',
+        quantiy: 1,
       }];
       localStorage.setItem('cart', JSON.stringify(cart));
     }
   }
 
-  getCarts(): Observable<any[]> {
-    let carts: any[] = [];
+  getCarts(): Observable<Cart[]> {
+    let carts: Cart[] = [];
     if (localStorage.getItem('carts')) {
       carts = JSON.parse(localStorage.getItem('carts')!);
     }
     return of(carts);
   }
 
-  getCart(id: number): Observable<any> {
+  getCart(id: number): Observable<Cart> {
     let carts: Cart[] = [];
 
     if (localStorage.getItem('carts')) {
@@ -41,34 +45,72 @@ export class CartService {
     return of(cart);
   }
 
+  getSubTotal(): number {
+    let carts: Cart[] = [];
+    let subtotal = 0;
+    if (localStorage.getItem('carts')) {
+      carts = JSON.parse(localStorage.getItem('carts')!);
+    }
+    carts.map((cart) => {
+      subtotal += cart.price * cart.quantity;
+    });
+    return subtotal;
+  }
+
   addToCart(cart: any) {
     let carts: any[] = [];
     if (localStorage.getItem('carts')) {
       carts = JSON.parse(localStorage.getItem('carts')!);
     }
+    let alreadyAdded = false;
+    carts.map((item) => {
+      if (item.id === cart.id) {
+        item.quantity++;
+        console.log(item);
+        alreadyAdded = true;
+      }
+    });
 
-    carts.push(cart);
+    if (!alreadyAdded) {
+      cart.quantity = 1;
+      carts.push(cart);
+    }
+
 
     localStorage.setItem('carts', JSON.stringify(carts));
   }
 
-  async deleteItem(id: any){
+  async deleteItem(id: number){
+    console.log(id);
     let items:Cart[] = []
     if (localStorage.getItem('carts'))
     {
       items = JSON.parse(localStorage.getItem('carts')!)
     }
 
-    let item = items.find(item => item.id == id)
-  
-    
-    if (item)
-    {
-      let index = items.indexOf(item)
-      items.splice(index, 1)
-      await localStorage.setItem('items', JSON.stringify(items))
+    items.map((item) => {
+      if (item.id === id) {
+        console.log(item);
+        if (item.quantity > 1) {
+          item.quantity--
+        } else {
+        let index = items.indexOf(item)
+        items.splice(index, 1)
+      }
     }
-    console.log(items);
+  });
+  localStorage.setItem('carts', JSON.stringify(items))
+  
+    // console.log(item);
+    // if (item) {
+    //   if(item.quantity > 1){
+    //     item.quantity--
+    //   } else { 
+    //     //   let index = items.indexOf(item)
+    //     //   items.splice(index, 1)
+    //     //   await localStorage.setItem('items', JSON.stringify(items))
+    //   }
+    // 
   }
 
 }

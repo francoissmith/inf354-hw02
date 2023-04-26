@@ -20,6 +20,6 @@
   </div>
   <div *ngFor="let item of data">
     <app-info-card (click)="addToCart(item)" id="{{item.name}}" [data]="item"></app-info-card>
-    <ion-toast trigger="{{item.name}}" message="{{item.name}} added to the cart" [duration]="3000"></ion-toast>
+    <ion-toast trigger="{{item.name}}" color="secondary" position="top" message="{{item.name}} added to the cart" [duration]="3000"></ion-toast>
   </div>
 </ion-content>

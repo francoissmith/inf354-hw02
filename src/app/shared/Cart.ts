@@ -7,4 +7,5 @@ export class Cart implements ICart {
     distance!: number;
     price!: number;
     image!: string;
+    quantity!: number;
 }

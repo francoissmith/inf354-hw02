@@ -5,4 +5,5 @@ export interface ICart {
     distance: number;
     price: number;
     image: string;
+    quantity: number;
 }

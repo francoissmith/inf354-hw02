@@ -28,6 +28,18 @@ export class SearchPage implements OnInit {
       this.data = this.data.filter((item) => {
         return item.name.toLowerCase().includes(value.toLowerCase());
       });
+      if (this.data.length == 0) {
+        this.data = [{
+          id: 0,
+          name: 'No result found',
+          typeof: '',
+          distance: 0,
+          price: 0,
+          image: '',
+          rating: 0,
+          time: '',
+        }];
+      }
     }
     else {
       this.data.map((item:Info) => {

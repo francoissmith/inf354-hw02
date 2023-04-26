@@ -29,7 +29,7 @@
             <h4>Subtotal</h4>
           </ion-col>
           <ion-col class="ion-text-right">
-            <h4>R200</h4>
+            <h4>R{{subtotal}}</h4>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -37,7 +37,7 @@
             <h4>Delivery</h4>
           </ion-col>
           <ion-col class="ion-text-right">
-            <h4>Free</h4>
+            <h4>R{{delivery}}</h4>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -53,13 +53,17 @@
             <h4>Total</h4>
           </ion-col>
           <ion-col class="ion-text-right">
-            <h4>R200</h4>
+            <h4>R{{total}}</h4>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
   </ion-card>
 
+  <div class="ion-padding">
+    <ion-textarea label="Special Instructions:" labelPlacement="floating" [autocapitalize]="true" [autoGrow]="true"
+      [counter]="true" maxlength="150"></ion-textarea>
+  </div>
 
   <ion-card>
     <ion-card-content>
@@ -80,9 +84,51 @@
   </ion-card>
 
   <div class="button-container ion-text-center">
-    <ion-button color="danger">
-      <ion-icon name="card-outline"></ion-icon>
-      <ion-text id="pay">Pay</ion-text>
+
+    <ion-button (click)="setOpen(true)" color="primary">
+      <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+      <ion-text id="checkout" expand="block">Checkout</ion-text>
     </ion-button>
   </div>
+
+  <ion-modal *ngIf="isModalOpen" [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Modal</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <h1>Checkout</h1>
+        <div *ngFor="let item of data">
+          <app-checkout [data]="item"></app-checkout>
+        </div>
+        <ion-text>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <p class="sub">Subtotal</p>
+                <p class="sub">Delivery</p>
+                <h4>Total</h4>
+              </ion-col>
+              <ion-col class="ion-text-right">
+                <p class="sub">{{subtotal}}</p>
+                <p class="sub">R{{delivery}}</p>
+                <h4>R{{total}}</h4>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-text>
+        <div class="button-container ion-text-right">
+          <ion-button (click)="pay()" color="danger">
+            <ion-icon name="card-outline"></ion-icon>
+            <ion-text id="pay" expand="block">Pay</ion-text>
+          </ion-button>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
