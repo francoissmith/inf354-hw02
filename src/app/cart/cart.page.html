@@ -1,0 +1,165 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Cart</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="ion-padding">
+    <h3>Items in your cart</h3>
+  </div>
+
+  <ion-list>
+    <ion-item>  
+      <!-- *ngFor="let item of cart" -->
+      <ion-thumbnail slot="start">
+        <img src="assets/2.jpeg" />
+      </ion-thumbnail>
+      <ion-label>
+        <h4><b>Jollof</b></h4>
+        <ion-text color="medium">
+          <p>Africa</p>
+        </ion-text>
+        <ion-text color="danger">
+          <p class="distance"></p>
+          <p class="">
+            <ion-icon name="location-outline"></ion-icon>
+            2.5km away
+          </p>
+        </ion-text>
+      </ion-label>
+      <ion-note slot="end" color="danger">
+        R150
+      </ion-note>
+    </ion-item>
+    <ion-item>  
+      <!-- *ngFor="let item of cart" -->
+      <ion-thumbnail slot="start">
+        <img src="assets/2.jpeg" />
+      </ion-thumbnail>
+      <ion-label>
+        <h4><b>Jollof</b></h4>
+        <ion-text color="medium">
+          <p>Africa</p>
+        </ion-text>
+        <ion-text color="danger">
+          <p class="distance"></p>
+          <p class="">
+            <ion-icon name="location-outline"></ion-icon>
+            2.5km away
+          </p>
+        </ion-text>
+      </ion-label>
+      <ion-note slot="end" color="danger">
+        R150
+      </ion-note>
+    </ion-item>
+    <ion-item>  
+      <!-- *ngFor="let item of cart" -->
+      <ion-thumbnail slot="start">
+        <img src="assets/2.jpeg" />
+      </ion-thumbnail>
+      <ion-label>
+        <h4><b>Jollof</b></h4>
+        <ion-text color="medium">
+          <p>Africa</p>
+        </ion-text>
+        <ion-text color="danger">
+          <p class="distance"></p>
+          <p class="">
+            <ion-icon name="location-outline"></ion-icon>
+            2.5km away
+          </p>
+        </ion-text>
+      </ion-label>
+      <ion-note slot="end" color="danger">
+        R150
+      </ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h4>Subtotal</h4>
+          </ion-col>
+          <ion-col class="ion-text-right">
+            <h4>R200</h4>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h4>Delivery</h4>
+          </ion-col>
+          <ion-col class="ion-text-right">
+            <h4>Free</h4>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h4>Tax</h4>
+          </ion-col>
+          <ion-col class="ion-text-right">
+            <h4>Free</h4>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <h4>Total</h4>
+          </ion-col>
+          <ion-col class="ion-text-right">
+            <h4>R200</h4>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h4>Payment Method</h4>
+          </ion-col>
+          <ion-col class="ion-text-right">
+            <h4>Cash</h4>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card> -->
+
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <h4>Delivery Address to Home</h4>
+            <p>123 Main St, New York, NY 10001</p>
+          </ion-col>
+          <ion-col class="ion-text-right">
+            <ion-button fill="clear">
+              <ion-text>Change</ion-text>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="button-container ion-text-center">
+    <ion-button color="danger">
+      <ion-icon name="card-outline"></ion-icon>
+      <ion-text id="pay">Pay</ion-text>
+    </ion-button>
+  </div>
+</ion-content>
