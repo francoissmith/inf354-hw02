@@ -1,19 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="light" class="ion-padding">
-    <ion-searchbar></ion-searchbar>
+    <ion-searchbar (keyup)="onSearch($event)" ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-
-      <app-info-card></app-info-card>
-      <app-info-card></app-info-card>
-      <app-info-card></app-info-card>
-      <app-info-card></app-info-card>
-      <app-info-card></app-info-card>
-      <app-info-card></app-info-card>
-      <app-info-card></app-info-card>
-      <app-info-card></app-info-card>
-  </ion-header>
+    <div *ngFor="let item of data">
+      <app-info-card [data]="item"></app-info-card>
+    </div>
 </ion-content>

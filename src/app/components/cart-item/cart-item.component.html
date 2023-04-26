@@ -1,0 +1,26 @@
+<ion-item lines="none">  
+  <ion-thumbnail slot="start">
+    <img src="{{data.image}}" />
+  </ion-thumbnail>
+  <ion-label>
+    <h4><b>{{data.name}}</b></h4>
+    <ion-text color="medium">
+      <p>{{ data.typeof }}</p>
+    </ion-text>
+    <ion-text color="danger">
+      <p class="distance"></p>
+      <p class="">
+        <ion-icon name="location-outline"></ion-icon>
+        {{data.distance}}km away
+      </p>
+    </ion-text>
+  </ion-label>
+  <ion-note id="{{data.id}}" slot="end" color="danger">
+    R{{data.price}}
+    <br>
+    <ion-button (click)="deleteItem($event)" color="danger" style="transform: translateY(15px)">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-button>
+  </ion-note>
+</ion-item>
+<ion-item>  

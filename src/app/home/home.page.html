@@ -9,6 +9,7 @@
     <ion-toolbar>
       <ion-title size="large">Home</ion-title>
     </ion-toolbar>
+    <br>
   </ion-header>
   <app-restaurant-image></app-restaurant-image>
   <div class="ion-padding">
@@ -17,8 +18,8 @@
       Dicover unique tastes near you
     </ion-text>
   </div>
-   <app-info-card></app-info-card>
-   <app-info-card></app-info-card>
-   <app-info-card></app-info-card>
-   <app-info-card></app-info-card>
+  <div *ngFor="let info of data">
+    <ion-toast trigger="open-toast" message="Item added to the cart" [duration]="3000"></ion-toast>
+    <app-info-card (click)="addToCart(info)" id="open-toast" [data]="info"></app-info-card>
+  </div>
 </ion-content>

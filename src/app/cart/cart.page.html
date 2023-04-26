@@ -16,72 +16,9 @@
   </div>
 
   <ion-list>
-    <ion-item>  
-      <!-- *ngFor="let item of cart" -->
-      <ion-thumbnail slot="start">
-        <img src="assets/2.jpeg" />
-      </ion-thumbnail>
-      <ion-label>
-        <h4><b>Jollof</b></h4>
-        <ion-text color="medium">
-          <p>Africa</p>
-        </ion-text>
-        <ion-text color="danger">
-          <p class="distance"></p>
-          <p class="">
-            <ion-icon name="location-outline"></ion-icon>
-            2.5km away
-          </p>
-        </ion-text>
-      </ion-label>
-      <ion-note slot="end" color="danger">
-        R150
-      </ion-note>
-    </ion-item>
-    <ion-item>  
-      <!-- *ngFor="let item of cart" -->
-      <ion-thumbnail slot="start">
-        <img src="assets/2.jpeg" />
-      </ion-thumbnail>
-      <ion-label>
-        <h4><b>Jollof</b></h4>
-        <ion-text color="medium">
-          <p>Africa</p>
-        </ion-text>
-        <ion-text color="danger">
-          <p class="distance"></p>
-          <p class="">
-            <ion-icon name="location-outline"></ion-icon>
-            2.5km away
-          </p>
-        </ion-text>
-      </ion-label>
-      <ion-note slot="end" color="danger">
-        R150
-      </ion-note>
-    </ion-item>
-    <ion-item>  
-      <!-- *ngFor="let item of cart" -->
-      <ion-thumbnail slot="start">
-        <img src="assets/2.jpeg" />
-      </ion-thumbnail>
-      <ion-label>
-        <h4><b>Jollof</b></h4>
-        <ion-text color="medium">
-          <p>Africa</p>
-        </ion-text>
-        <ion-text color="danger">
-          <p class="distance"></p>
-          <p class="">
-            <ion-icon name="location-outline"></ion-icon>
-            2.5km away
-          </p>
-        </ion-text>
-      </ion-label>
-      <ion-note slot="end" color="danger">
-        R150
-      </ion-note>
-    </ion-item>
+    <div *ngFor="let item of data">
+      <app-cart-item [data]="item"></app-cart-item>
+    </div>
   </ion-list>
 
   <ion-card>
@@ -123,20 +60,6 @@
     </ion-card-content>
   </ion-card>
 
-  <!-- <ion-card>
-    <ion-card-content>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <h4>Payment Method</h4>
-          </ion-col>
-          <ion-col class="ion-text-right">
-            <h4>Cash</h4>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card> -->
 
   <ion-card>
     <ion-card-content>

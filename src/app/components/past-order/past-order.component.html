@@ -8,12 +8,12 @@
               <img src="assets/2.jpeg" />
             </ion-thumbnail>
             <ion-label>
-              <h4><b>Jollof of Africa</b></h4>
+              <h4><b>{{data.name}}</b></h4>
               <ion-text color="medium">
-                <p>University of Pretoria</p>
+                <p>{{data.location}}</p>
               </ion-text>
               <span>
-                R 200
+                R {{data.total}}
                 <ion-icon name="chevron-forward-outline"></ion-icon>
               </span>
             </ion-label>
@@ -22,7 +22,8 @@
             <ion-text color="medium">
               <p>
                 Delivered
-                <ion-icon color="success" name="checkmark-circle-outline"></ion-icon>
+                <ion-icon *ngIf="data.delivered" color="success" name="checkmark-circle-outline"></ion-icon>
+                <ion-icon *ngIf="!data.delivered" color="danger" name="close-circle-outline"></ion-icon>
               </p>
             </ion-text>
           </ion-col>
@@ -34,8 +35,8 @@
         <ion-row>
           <ion-col>
             <ion-text color="danger">
-              <p>Jollof x 2</p>
-              <p>March 31, 2023 10:00 AM</p>
+              <p>{{data.name}} x {{data.amount}}</p>
+              <p>{{data.date}} {{data.time}}</p>
             </ion-text>
           </ion-col>
         </ion-row>

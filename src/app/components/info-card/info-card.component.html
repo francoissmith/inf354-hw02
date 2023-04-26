@@ -1,17 +1,17 @@
 <ion-item lines="none">
   <ion-thumbnail slot="start">
-    <img src="assets/2.jpeg" />
+    <img src="{{data.image}}" />
   </ion-thumbnail>
   <ion-label>
-    <h4><b>Jollof of Africa</b></h4>
+    <h4><b>{{data.name}}</b></h4>
     <ion-text color="medium">
-      <p>African</p>
+      <p>{{data.typeof}}</p>
     </ion-text>
     <span>
-      4.5
+      {{data.rating}}
       <ion-icon name="star"></ion-icon>
       <ion-text>
-        5 mins. R150 for two
+        {{data.time}}. R{{data.price}} for two
       </ion-text>
     </span>
 
@@ -19,7 +19,7 @@
       <p class="distance"></p>
       <p class="">
         <ion-icon name="location-outline"></ion-icon>
-        2.5km away
+        {{data.distance}} away
       </p>
     </ion-text>
   </ion-label>
