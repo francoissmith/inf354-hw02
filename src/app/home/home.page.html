@@ -18,8 +18,8 @@
       Dicover unique tastes near you
     </ion-text>
   </div>
-  <div *ngFor="let info of data">
-    <ion-toast trigger="open-toast" message="Item added to the cart" [duration]="3000"></ion-toast>
-    <app-info-card (click)="addToCart(info)" id="open-toast" [data]="info"></app-info-card>
+  <div *ngFor="let item of data">
+    <app-info-card (click)="addToCart(item)" id="{{item.name}}" [data]="item"></app-info-card>
+    <ion-toast trigger="{{item.name}}" message="{{item.name}} added to the cart" [duration]="3000"></ion-toast>
   </div>
 </ion-content>

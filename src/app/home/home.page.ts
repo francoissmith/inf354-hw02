@@ -1,6 +1,7 @@
 import {  Component, OnInit } from '@angular/core';
 import { HomeService} from '../services/home.service';
 import { CartService } from '../services/cart.service';
+import { Info } from '../shared/Info';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { CartService } from '../services/cart.service';
 })
 
 export class HomePage implements OnInit {
-  data = [];
+  data!: Info[];
   constructor(private homeService: HomeService, private cartService: CartService) { }
 
   ngOnInit(): void {

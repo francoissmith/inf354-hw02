@@ -67,7 +67,7 @@ export class HomeService {
   }
 
   getRestaurants(): Observable<Info[]> {
-    let restaurants: any[] = [];
+    let restaurants: Info[] = [];
     if (localStorage.getItem('restaurants')) {
       restaurants = JSON.parse(localStorage.getItem('restaurants')!);
     }
