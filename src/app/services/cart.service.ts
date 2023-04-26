@@ -8,6 +8,7 @@ import { PastOrder } from '../shared/PastOrder';
 })
 export class CartService {
   instructions: string = '';
+  // ********* Local Storage *********
   constructor() {
     if (!localStorage.getItem('cart')) {
       let cart = [{}];
@@ -17,6 +18,7 @@ export class CartService {
     }
   }
 
+  // ********* Get Cart *********
   getCarts(): Observable<Cart[]> {
     let carts: Cart[] = [];
     if (localStorage.getItem('carts')) {
@@ -25,6 +27,7 @@ export class CartService {
     return of(carts);
   }
 
+  // ********* Get Instructions *********
   getIstructions(): Observable<string> {
     let instructions: string = '';
     if (localStorage.getItem('instructions')) {
@@ -33,10 +36,12 @@ export class CartService {
     return of(instructions);
   }
 
+  // ********* Set Instructions *********
   setInstructions(instructions: string) {
     localStorage.setItem('instructions', JSON.stringify(instructions));
   }
 
+  // ********* Get Cart *********
   getCart(id: number): Observable<Cart> {
     let carts: Cart[] = [];
 
@@ -51,6 +56,7 @@ export class CartService {
     return of(cart);
   }
 
+  // ********* Get Subtotal *********
   getSubTotal(): number {
     let carts: Cart[] = [];
     let subtotal = 0;
@@ -63,7 +69,8 @@ export class CartService {
     return subtotal;
   }
 
-  addToCart(cart: any) {
+  // ********* Add to Cart *********
+  async addToCart(cart: any) {
     let carts: any[] = [];
     if (localStorage.getItem('carts')) {
       carts = JSON.parse(localStorage.getItem('carts')!);
@@ -81,11 +88,10 @@ export class CartService {
       cart.quantity = 1;
       carts.push(cart);
     }
-
-
-    localStorage.setItem('carts', JSON.stringify(carts));
+    await localStorage.setItem('carts', JSON.stringify(carts));
   }
 
+  // ********* Delete Item *********
   async deleteItem(id: number){
     console.log(id);
     let items:Cart[] = []
@@ -108,6 +114,7 @@ export class CartService {
   localStorage.setItem('carts', JSON.stringify(items))
   }
 
+  // ********* Clear Cart *********
   clearCart(instructions?: string) {
     let pastOrders = JSON.parse(localStorage.getItem('pastorder')!);
     let carts: Cart[] = [];

@@ -16,6 +16,7 @@ export class SearchPage implements OnInit {
     this.homeService.getRestaurants().subscribe((restaurants:any) => { this.data = restaurants; console.log(this.data); });
   }
 
+  // ********* Search Filter *********
   onSearch(event: any) {
     const value = event.target.value;
     if (event.keyCode === 8) {
@@ -48,6 +49,7 @@ export class SearchPage implements OnInit {
     }
   }
 
+  // ********* Add to Cart *********
   addToCart(item: any) {
     this.cartService.addToCart(item);
   }

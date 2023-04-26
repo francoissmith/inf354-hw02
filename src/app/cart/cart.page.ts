@@ -24,10 +24,13 @@ export class CartPage implements OnInit {
   this.total = this.subtotal + this.delivery;
   this.cartService.getIstructions().subscribe((instructions:string) => { this.instructions = instructions; console.log(this.instructions); });
   }
+  
+  // ********* Refresh Page *********
   ionViewWillEnter() {
     this.ngOnInit();
   }
 
+  // ********* Make Payment *********
   pay() {
     this.confirm().then((confirmed) => {
       if (confirmed) {
@@ -47,6 +50,7 @@ export class CartPage implements OnInit {
     });
   }
 
+  // ********* Open Modal *********
   setOpen(isOpen: boolean) {
     if(this.data.length == 0){
       this.showToast('Cart is empty', 'danger', 'top');
@@ -55,6 +59,7 @@ export class CartPage implements OnInit {
     } 
   }
 
+  // ********* Show Toast *********
   async showToast(msg: string, color: string, pos: 'top' | 'bottom' | 'middle') {
     const toast = await this.toastController.create({
       message: msg,
@@ -65,6 +70,7 @@ export class CartPage implements OnInit {
     toast.present();
   }
 
+  // ********* Confirm Payment *********
   confirm = async () => {
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Are you sure you?',
@@ -82,7 +88,6 @@ export class CartPage implements OnInit {
     });
 
     actionSheet.present();
-
     const { role } = await actionSheet.onWillDismiss();
 
     return role === 'confirm';

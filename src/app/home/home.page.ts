@@ -17,6 +17,7 @@ export class HomePage implements OnInit {
     this.homeService.getRestaurants().subscribe((restaurants:any) => { this.data = restaurants; console.log(this.data); });
   }
 
+  // ********* Add to Cart *********
   addToCart(item: any) {
     this.cartService.addToCart(item);
   }

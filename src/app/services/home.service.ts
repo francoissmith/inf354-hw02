@@ -7,6 +7,7 @@ import { Info } from '../shared/Info';
 })
 export class HomeService {
   constructor() {
+    // ********* Local Storage *********
     if (!localStorage.getItem('restaurants')) {
       let restaurants = [
         {
@@ -66,6 +67,7 @@ export class HomeService {
     }
   }
 
+  // ********* Get Restaurants *********
   getRestaurants(): Observable<Info[]> {
     let restaurants: Info[] = [];
     if (localStorage.getItem('restaurants')) {
@@ -74,6 +76,7 @@ export class HomeService {
     return of(restaurants);
   }
 
+  // ********* Get Restaurant *********
   getRestaurant(id: number): Observable<Info> {
     let restaurants: Info[] = [];
 
@@ -87,6 +90,4 @@ export class HomeService {
 
     return of(restaurant);
   }
-
-
 }

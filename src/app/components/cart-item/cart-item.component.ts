@@ -14,6 +14,7 @@ export class CartItemComponent  implements OnInit {
   ngOnInit() {
     
   }
+// ********* Delete Item *********
 
   deleteItem(event: any) {
     const item = (event.target as HTMLElement).parentElement;

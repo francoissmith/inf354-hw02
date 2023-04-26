@@ -7,6 +7,7 @@ import { User } from '../shared/User';
   providedIn: 'root',
 })
 export class AccountService {
+  // ********* Local Storage *********
   constructor() {
     if (!localStorage.getItem('pastorder')) {
       let pastorder = [{
@@ -30,6 +31,7 @@ export class AccountService {
     }
   }
 
+  // ********* Get User Details *********
   getUserDetails(): Observable<User> {
     let userdetails: User = {name: '', email: '', phone: ''};
 
@@ -40,6 +42,7 @@ export class AccountService {
     return of(userdetails);
   }
 
+  // ********* Get Past Orders *********
   getPastOrders(): Observable<any[]> {
     let pastorders: PastOrder[] = [];
 
@@ -50,6 +53,7 @@ export class AccountService {
     return of(pastorders);
   }
 
+  // ********* Get Past Order *********
   getPastOrder(id: number): Observable<any> {
     let pastorders: PastOrder[] = [];
 
@@ -64,6 +68,7 @@ export class AccountService {
     return of(pastorder);
   }
 
+  // ********* Add Past Order *********
   addToPastOrders(pastorder: any) {
     let pastorders: any[] = [];
     if (localStorage.getItem('pastorders')) {

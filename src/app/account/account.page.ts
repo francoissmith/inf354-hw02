@@ -17,7 +17,7 @@ export class AccountPage implements OnInit {
     this.accountService.getPastOrders().subscribe((account:any) => { this.data = account; console.log(this.data); });
     this.accountService.getUserDetails().subscribe((account:any) => { this.details = account; console.log(this.details); });
   }
-
+// ********* Edit Details *********
   toggleInputs(event: any) {
     let newdata: User = {name: '', email: '', phone: ''};
     event.target.textContent = event.target.textContent === 'Save' ? 'Edit' : 'Save';
